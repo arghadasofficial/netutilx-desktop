@@ -16,26 +16,30 @@
  */
 package argha.netutilx.model;
 
-import java.util.List;
-
 /**
  *
  * @author argha
  */
-public class DnsTypesApiResponse {
-    private boolean success;
-    private String message;
-    private List<DnsType> data;
+public class DnsType {
+    private String id;
+    private String name;
+    private String description;
 
-    public boolean isSuccess() {
-        return success;
+    public String getId() {
+        return id;
     }
 
-    public String getMessage() {
-        return message;
+    public String getName() {
+        return name;
     }
 
-    public List<DnsType> getData() {
-        return data;
+    public String getDescription() {
+        return description;
     }
+
+    @Override
+    public String toString() {
+        return "DnsTypes{" + "id=" + id + ", name=" + name + ", description=" + description + '}';
+    }
+   
 }
