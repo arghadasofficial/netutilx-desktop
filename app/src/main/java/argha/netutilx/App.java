@@ -3,64 +3,20 @@
  */
 package argha.netutilx;
 
-import argha.netutilx.model.DnsRecord;
-import argha.netutilx.model.DnsServer;
-import argha.netutilx.model.DnsType;
-import argha.netutilx.service.DnsApiService;
-import java.io.IOException;
-import java.util.List;
+import argha.netutilx.ui.MainAppFrame;
+import com.formdev.flatlaf.FlatIntelliJLaf; // A clean, light theme
+import javax.swing.SwingUtilities;
 
 public class App {
-    
+
     public static void main(String[] args) {
-        DnsApiService service = new DnsApiService();
-        System.out.println("--- Testing Netutilx API Service ---");
-        
-        try {
-            // Test 1: Get all available DNS Servers
-            System.out.println("\n[1] Fetching All DNS Servers...");
-            List<DnsServer> dnsServers = service.getDnsServers();
-            dnsServers.forEach(System.out::println);
-            
-            // Test 2: Get all available DNS Types
-            System.out.println("\n[2] Fetching All DNS Types...");
-            List<DnsType> dnsTypes = service.getDnsTypes();
-            dnsTypes.forEach(System.out::println);
-
-            // --- Testing DNS Info for different record types ---
-
-            // Test 3: Get A Records
-            System.out.println("\n[3] Fetching A Records for google.com...");
-            List<DnsRecord> aRecords = service.getDnsInfo("google.com", "1", "1");
-            aRecords.forEach(System.out::println);
-
-            // Test 4: Get NS Records
-            System.out.println("\n[4] Fetching NS Records for google.com...");
-            List<DnsRecord> nsRecords = service.getDnsInfo("google.com", "1", "2");
-            nsRecords.forEach(System.out::println);
-
-            // Test 5: Get MX Records
-            System.out.println("\n[5] Fetching MX Records for google.com...");
-            List<DnsRecord> mxRecords = service.getDnsInfo("google.com", "1", "3");
-            mxRecords.forEach(System.out::println);
-
-            // Test 6: Get SOA Record
-            System.out.println("\n[6] Fetching SOA Record for google.com...");
-            List<DnsRecord> soaRecords = service.getDnsInfo("google.com", "1", "4");
-            soaRecords.forEach(System.out::println);
-
-            // Test 7: Get TXT Records
-            System.out.println("\n[7] Fetching TXT Records for google.com...");
-            List<DnsRecord> txtRecords = service.getDnsInfo("google.com", "1", "5");
-            txtRecords.forEach(System.out::println);
-            
-            // Test 8: Get PTR Record
-            System.out.println("\n[8] Fetching PTR Record for 142.251.220.78...");
-            List<DnsRecord> ptrRecords = service.getDnsInfo("142.251.220.78", "1", "6");
-            ptrRecords.forEach(System.out::println);
-
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+       try {
+            FlatIntelliJLaf.setup(); // Or try FlatDarculaLaf for a dark theme
+        } catch (Exception e) {
+            System.err.println("Failed to initialize LaF");
         }
+        SwingUtilities.invokeLater(() -> {
+            new MainAppFrame().setVisible(true);
+        });
     }
 }

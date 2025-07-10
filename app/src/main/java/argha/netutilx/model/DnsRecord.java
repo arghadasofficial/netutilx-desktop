@@ -29,7 +29,7 @@ public class DnsRecord {
 
     // Use a nested static class for the complex SOA data
     public static class SoaData {
-        
+
         public String mname;
         public String rname;
         public long serial;
@@ -40,7 +40,12 @@ public class DnsRecord {
 
         @Override
         public String toString() {
-            return String.format("[mname=%s, rname=%s, serial=%d]", mname, rname, serial);
+            return String.format(
+                    "MNAME: %s\n"
+                    + "RNAME: %s\n"
+                    + "Serial: %d\n"
+                    + "Refresh: %d, Retry: %d, Expire: %d, Min TTL: %d",
+                    mname, rname, serial, refresh, retry, expire, minimum);
         }
     }
 
